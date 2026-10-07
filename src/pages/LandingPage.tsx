@@ -2,9 +2,6 @@ import { useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from '../components/Button'
-import { PaintField } from '../components/PaintField'
-
-
 const PRICING_PREVIEW = [
   { label: 'Student Free', price: 'Rs 0', chip: 'free' as const, features: ['5 buy requests/month', '1 category in Swap', '3 active listings', 'Calendar + basic volunteer'] },
   { label: 'Student Freemium', price: 'Rs 99/mo', chip: 'freemium' as const, features: ['5 buy requests/month', 'All categories in Swap', 'Unlimited listings', 'Profile preferences'] },
@@ -29,11 +26,12 @@ export default function LandingPage() {
     <div ref={scrollRef} className="min-h-screen bg-carnival overflow-x-hidden text-[#F7F4D5]">
 
       {/* HERO */}
-      <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
-        <PaintField />
-        {/* Dark overlay to tone down the background animation */}
-        <div className="absolute inset-0 bg-[#210100]/60 z-0 pointer-events-none mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#210100] via-transparent to-transparent z-0 pointer-events-none" />
+      <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#210100] via-[#3A0A05] to-[#210100]">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stucco.png')] pointer-events-none" />
+        
+        {/* Soft glowing ambient lights behind text */}
+        <motion.div style={{ y: y1 }} className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#8C0902]/20 rounded-full blur-[100px] pointer-events-none" />
+        <motion.div style={{ y: y2 }} className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[#E6A341]/10 rounded-full blur-[80px] pointer-events-none" />
 
         {/* Floating decorative accents */}
         <motion.div className="absolute top-[15%] left-[5%] pointer-events-none hidden sm:block"
