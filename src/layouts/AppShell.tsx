@@ -64,7 +64,6 @@ export default function AppShell() {
   const isLotus = location.pathname.includes('/swap')
   const bgClass = isLotus ? 'bg-lotus' : 'bg-carnival'
   const textClass = isLotus ? 'text-[#839958]' : 'text-[#E6A341]'
-  const borderClass = isLotus ? 'border-[#839958]/30' : 'border-[#E6A341]/30'
   
   // Header uses charcoal-panel for textured aesthetic
   const headerBg = 'charcoal-panel'
