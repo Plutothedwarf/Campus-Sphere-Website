@@ -1,4 +1,4 @@
-﻿import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from '../components/Button'
@@ -31,6 +31,9 @@ export default function LandingPage() {
       {/* HERO */}
       <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
         <PaintField />
+        {/* Dark overlay to tone down the background animation */}
+        <div className="absolute inset-0 bg-[#210100]/60 z-0 pointer-events-none mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#210100] via-transparent to-transparent z-0 pointer-events-none" />
 
         {/* Floating decorative accents */}
         <motion.div className="absolute top-[15%] left-[5%] pointer-events-none hidden sm:block"
@@ -188,42 +191,67 @@ export default function LandingPage() {
             </motion.button>
           </div>
 
-          <div className="relative h-64 sm:h-[400px] order-1 md:order-2">
+          <div className="relative h-80 sm:h-[500px] order-1 md:order-2 w-full">
+            {/* Hand-drawn scribble accent */}
+            <motion.svg className="absolute -top-10 right-10 w-24 h-24 text-[#E6A341]/40 hidden sm:block pointer-events-none" viewBox="0 0 100 100" initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.5, delay: 0.5 }}>
+              <path d="M10,50 Q30,20 50,50 T90,50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M70,30 L90,50 L70,70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </motion.svg>
+
+            {/* Note tag */}
+            <motion.div 
+              initial={{ opacity: 0, rotate: 15 }} whileInView={{ opacity: 1, rotate: -5 }} transition={{ duration: 0.6, delay: 0.2 }}
+              className="absolute top-0 right-[10%] sm:right-1/4 bg-[#D3968C] px-3 py-1 font-mono text-[10px] text-[#210100] uppercase tracking-widest shadow-lg z-30 transform-origin-top-right rotate-12"
+            >
+              $15 only
+            </motion.div>
+
             <motion.div
-              initial={{ opacity: 0, rotate: -12, y: 30 }}
-              whileInView={{ opacity: 1, rotate: -7, y: 0 }}
+              initial={{ opacity: 0, rotate: -12, x: -30, y: 30 }}
+              whileInView={{ opacity: 1, rotate: -8, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.05, rotate: -3, zIndex: 20 }}
-              className="absolute top-2 left-4 sm:top-0 sm:left-0 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl"
-              style={{ width: 'min(136px, 37vw)' }}
+              whileHover={{ scale: 1.05, rotate: -3, zIndex: 30 }}
+              className="absolute top-10 left-4 sm:top-12 sm:left-4 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl group"
+              style={{ width: 'clamp(140px, 35vw, 220px)' }}
             >
-              <div className="aspect-square bg-gradient-to-br from-[#105666] to-[#0A3323] mb-2 sm:mb-4" />
-              <div className="font-handwriting text-[#210100] text-sm sm:text-xl text-center">Math 101 Book</div>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-white/40 backdrop-blur-sm rotate-2 mix-blend-overlay shadow-sm" />
+              <div className="aspect-square bg-[#0A3323] flex items-center justify-center p-4 mb-2 sm:mb-4 group-hover:bg-[#105666] transition-colors">
+                <span className="font-serif italic text-[#F7F4D5]/60 text-xl text-center leading-tight">Advanced<br/>Calculus</span>
+              </div>
+              <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Math 101 Book</div>
             </motion.div>
+
             <motion.div
-              initial={{ opacity: 0, rotate: 12, y: 40 }}
-              whileInView={{ opacity: 1, rotate: 9, y: 0 }}
+              initial={{ opacity: 0, rotate: 12, x: 30, y: 40 }}
+              whileInView={{ opacity: 1, rotate: 14, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              whileHover={{ scale: 1.05, rotate: 4, zIndex: 20 }}
-              className="absolute top-6 right-4 sm:top-14 sm:right-8 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl"
-              style={{ width: 'min(136px, 37vw)' }}
+              whileHover={{ scale: 1.05, rotate: 6, zIndex: 30 }}
+              className="absolute top-24 right-4 sm:top-20 sm:right-8 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl group"
+              style={{ width: 'clamp(140px, 35vw, 220px)' }}
             >
-              <div className="aspect-square bg-gradient-to-tl from-[#0A3323] to-[#105666] mb-2 sm:mb-4" />
-              <div className="font-handwriting text-[#210100] text-sm sm:text-xl text-center">Lab Coat (M)</div>
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-8 bg-white/40 backdrop-blur-sm -rotate-4 mix-blend-overlay shadow-sm" />
+              <div className="aspect-square bg-[#E6A341]/20 flex items-center justify-center p-4 mb-2 sm:mb-4 group-hover:bg-[#E6A341]/40 transition-colors">
+                <span className="font-mono uppercase tracking-widest text-[#0A3323] text-sm text-center">Size<br/>Medium</span>
+              </div>
+              <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Lab Coat (M)</div>
             </motion.div>
+
             <motion.div
-              initial={{ opacity: 0, rotate: 2, y: 50 }}
-              whileInView={{ opacity: 1, rotate: 4, y: 0 }}
+              initial={{ opacity: 0, rotate: -2, y: 60 }}
+              whileInView={{ opacity: 1, rotate: 2, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              whileHover={{ scale: 1.05, rotate: -1, zIndex: 20 }}
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 sm:bottom-6 sm:left-16 sm:translate-x-0 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl"
-              style={{ width: 'min(136px, 37vw)' }}
+              whileHover={{ scale: 1.05, rotate: -2, zIndex: 30 }}
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:bottom-12 sm:left-[45%] sm:-translate-x-1/2 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl group"
+              style={{ width: 'clamp(140px, 35vw, 220px)' }}
             >
-              <div className="aspect-square bg-gradient-to-bl from-[#E6A341]/30 to-[#D3968C] mb-2 sm:mb-4" />
-              <div className="font-handwriting text-[#210100] text-sm sm:text-xl text-center">Casio Calc</div>
+              <div className="absolute -top-3 left-[20%] w-20 h-5 bg-white/50 backdrop-blur-md rotate-1 mix-blend-overlay shadow-sm" />
+              <div className="aspect-square bg-[#D3968C]/30 flex items-center justify-center p-4 mb-2 sm:mb-4 group-hover:bg-[#D3968C]/50 transition-colors">
+                <span className="font-display text-[#8C0902]/60 text-4xl">fx</span>
+              </div>
+              <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Casio Calc</div>
             </motion.div>
           </div>
         </motion.div>
@@ -244,33 +272,60 @@ export default function LandingPage() {
           transition={{ duration: 0.7 }}
           className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center"
         >
-          <div className="order-2 md:order-1 relative h-56 sm:h-80 flex items-center justify-center">
+          <div className="order-2 md:order-1 relative h-80 sm:h-[450px] w-full flex items-center justify-center">
+            
+            {/* Background poster (dark red) */}
             <motion.div
-              initial={{ opacity: 0, rotate: 10 }}
-              whileInView={{ opacity: 0.6, rotate: 9 }}
+              initial={{ opacity: 0, rotate: 12, x: 20 }}
+              whileInView={{ opacity: 1, rotate: 8, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="absolute right-2 sm:right-8 top-2 bg-[#F7F4D5]/15 border border-[#F7F4D5]/10 backdrop-blur-sm"
-              style={{ width: 'min(200px, 56vw)', height: '120px' }}
-            />
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ scale: 1.02, rotate: 10, zIndex: 10 }}
+              className="absolute right-[5%] top-[10%] sm:right-[15%] sm:top-[5%] bg-[#8C0902] p-5 shadow-[0_16px_30px_rgba(0,0,0,0.5)] z-0"
+              style={{ width: 'clamp(160px, 45vw, 240px)', height: 'clamp(200px, 55vw, 280px)' }}
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-black/20 rounded-full blur-md" />
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#E6A341] shadow-inner" />
+              <div className="font-display uppercase text-3xl text-[#F7F4D5] leading-none mt-4 mix-blend-overlay">Debate<br/>Club</div>
+              <div className="font-serif italic text-[#F7F4D5]/60 mt-2">Tryouts 2026</div>
+            </motion.div>
+
+            {/* Small ticket/flyer */}
+            <motion.div
+              initial={{ opacity: 0, rotate: -25, x: -40 }}
+              whileInView={{ opacity: 1, rotate: -18, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.05, rotate: -15, zIndex: 20 }}
+              className="absolute left-[5%] bottom-[15%] sm:left-[10%] sm:bottom-[20%] bg-[#E6A341] p-3 sm:p-4 shadow-xl z-10"
+              style={{ width: 'clamp(120px, 30vw, 160px)' }}
+            >
+              <div className="font-mono text-[8px] uppercase tracking-widest text-[#210100]/60 border-b border-[#210100]/20 pb-1 mb-2">Volunteer</div>
+              <div className="font-handwriting text-[#210100] text-xl leading-none mb-1">Beach Cleanup</div>
+              <div className="font-mono text-[9px] text-[#8C0902]">Need 20 hrs</div>
+            </motion.div>
+
+            {/* Main Poster */}
             <motion.div
               initial={{ opacity: 0, rotate: -8, y: 30 }}
-              whileInView={{ opacity: 1, rotate: -4, y: 0 }}
+              whileInView={{ opacity: 1, rotate: -3, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.04, rotate: -1 }}
-              className="relative bg-[#F7F4D5] p-5 sm:p-8 shadow-2xl z-10"
-              style={{ width: 'min(220px, 60vw)' }}
+              whileHover={{ scale: 1.04, rotate: -1, zIndex: 30 }}
+              className="relative bg-[#F7F4D5] p-5 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.6)] z-20 mx-auto"
+              style={{ width: 'clamp(200px, 60vw, 320px)' }}
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-4 bg-[#E6A341]/30 rotate-1" />
-              <div className="w-full h-16 sm:h-24 border-2 border-dashed border-[#B14A36]/40 flex items-center justify-center mb-3 sm:mb-4">
-                <span className="font-mono text-[9px] text-[#B14A36]/60 uppercase tracking-widest">Event Poster</span>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#E6A341]/40 backdrop-blur-sm rotate-2 mix-blend-multiply" />
+              <div className="absolute -top-3 left-[40%] -translate-x-1/2 w-20 h-5 bg-white/40 backdrop-blur-sm -rotate-3 mix-blend-screen" />
+              <div className="w-full h-24 sm:h-36 border-2 border-dashed border-[#B14A36]/30 flex flex-col items-center justify-center mb-4 sm:mb-6 bg-[#B14A36]/5">
+                <span className="font-mono text-[10px] text-[#B14A36]/60 uppercase tracking-widest mb-2">Main Event</span>
+                <span className="font-serif italic text-2xl text-[#8C0902]/40">Poster Space</span>
               </div>
-              <div className="font-display uppercase text-lg sm:text-2xl text-[#210100] leading-tight">Tech Symposium</div>
-              <div className="font-mono text-[10px] text-[#8C0902] mt-1">Oct 24 · CS Dept</div>
-              <div className="mt-3 flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#839958]" />
-                <span className="font-mono text-[9px] text-[#839958] uppercase tracking-widest">142 attending</span>
+              <div className="font-display uppercase text-2xl sm:text-4xl text-[#210100] leading-none mb-1 tracking-tighter">Tech Symposium</div>
+              <div className="font-mono text-[11px] text-[#8C0902] mb-3">Oct 24 · CS Department</div>
+              <div className="mt-4 flex items-center gap-2 border-t border-[#210100]/10 pt-4">
+                <div className="w-2 h-2 rounded-full bg-[#839958] animate-pulse" />
+                <span className="font-mono text-[10px] text-[#839958] uppercase tracking-widest font-bold">142 attending</span>
               </div>
             </motion.div>
           </div>
