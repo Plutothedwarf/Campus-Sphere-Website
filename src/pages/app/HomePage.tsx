@@ -26,10 +26,12 @@ export default function HomePage() {
           animate={{ y: 0, opacity: 1 }}
           className="border-b-2 border-[#E6A341]/20 pb-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 relative"
         >
-          <div className="flex-1 relative z-10">
+          <div className="flex-1 relative z-10 w-full overflow-hidden">
             <p className="font-mono text-sm uppercase tracking-widest text-[#E6A341]/80 mb-2">{greeting},</p>
-            <h1 className="font-display text-7xl md:text-9xl text-[#F7F4D5] uppercase tracking-tighter mix-blend-difference drop-shadow-lg leading-none">{user?.name}</h1>
-            {role === 'club' && <p className="font-serif italic text-4xl text-[#E6A341] mt-4">{user?.clubName} Admin</p>}
+            <h1 className="font-display text-5xl sm:text-7xl md:text-9xl text-[#F7F4D5] uppercase tracking-tighter mix-blend-difference drop-shadow-lg leading-none break-words w-full">
+              {user?.name}
+            </h1>
+            {role === 'club' && <p className="font-serif italic text-3xl sm:text-4xl text-[#E6A341] mt-4">{user?.clubName} Admin</p>}
           </div>
           <div className="relative z-10 self-start md:self-end">
             <Chip variant={role === 'club' ? (tier === 'pro' ? 'club-pro' : 'club-free') : tier as any} />
@@ -70,10 +72,10 @@ export default function HomePage() {
           >
             {/* Base card */}
             <div className="absolute inset-0 bg-[#0A3323] border border-[#839958]/30 rounded-2xl shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-soft-hover)] transition-all duration-300">
-              <div className="p-10 flex flex-col h-full justify-between relative z-10">
+              <div className="p-6 sm:p-10 flex flex-col h-full justify-between relative z-10">
                 <div>
-                  <h3 className="font-display text-6xl text-[#839958] uppercase tracking-tighter drop-shadow-md">Campus Swap</h3>
-                  <p className="font-serif italic text-3xl text-[#D3968C] mt-2">Buy, sell and rent</p>
+                  <h3 className="font-display text-4xl sm:text-6xl text-[#839958] uppercase tracking-tighter drop-shadow-md">Campus Swap</h3>
+                  <p className="font-serif italic text-2xl sm:text-3xl text-[#D3968C] mt-2">Buy, sell and rent</p>
                 </div>
                 <div className="font-mono text-sm uppercase tracking-widest text-[#F7F4D5]/50 border-t border-[#839958]/30 pt-4">
                   Enter marketplace →
@@ -92,10 +94,10 @@ export default function HomePage() {
           >
             {/* Base card */}
             <div className="absolute inset-0 bg-[#8C0902] border border-[#E6A341]/30 rounded-2xl shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-soft-hover)] transition-all duration-300">
-              <div className="p-10 flex flex-col h-full justify-between relative z-10">
+              <div className="p-6 sm:p-10 flex flex-col h-full justify-between relative z-10">
                 <div>
-                  <h3 className="font-display text-6xl text-[#F7F4D5] uppercase tracking-tighter drop-shadow-md">ClubHub</h3>
-                  <p className="font-serif italic text-3xl text-[#E6A341] mt-2">Events and volunteer</p>
+                  <h3 className="font-display text-5xl sm:text-6xl text-[#F7F4D5] uppercase tracking-tighter drop-shadow-md">ClubHub</h3>
+                  <p className="font-serif italic text-2xl sm:text-3xl text-[#E6A341] mt-2">Events and volunteer</p>
                 </div>
                 <div className="font-mono text-sm uppercase tracking-widest text-[#F7F4D5]/50 border-t border-[#E6A341]/30 pt-4">
                   Explore events →

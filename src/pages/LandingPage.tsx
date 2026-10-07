@@ -75,10 +75,10 @@ export default function LandingPage() {
             transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
             className="relative"
           >
-            <h1 className="font-display text-[22vw] sm:text-[15vw] leading-[0.8] tracking-[-0.04em] uppercase text-[#F7F4D5] mix-blend-difference drop-shadow-2xl">
+            <h1 className="font-display text-[15vw] sm:text-[12vw] leading-[0.8] tracking-[-0.04em] uppercase text-[#F7F4D5] mix-blend-difference drop-shadow-2xl">
               Campus
             </h1>
-            <span className="font-script text-[28vw] sm:text-[18vw] leading-none absolute -bottom-6 sm:-bottom-12 -right-2 sm:-right-12 text-[#E6A341] -rotate-6 drop-shadow-2xl block">
+            <span className="font-script text-[18vw] sm:text-[14vw] leading-none absolute -bottom-4 sm:-bottom-12 -right-1 sm:-right-12 text-[#E6A341] -rotate-6 drop-shadow-2xl block">
               sphere
             </span>
           </motion.div>
