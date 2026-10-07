@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  /* Shared */
+  --color-paper: #F7F4D5;
+  
+  /* Carnival */
+  --color-bistre: #210100;
+  --color-goldfinch: #E6A341;
+  --color-butter: #FECE79;
+  --color-indian-red: #B14A36;
+  --color-garnet: #8C0902;
+  
+  /* Lotus */
+  --color-dark-green: #0A3323;
+  --color-moss: #839958;
+  --color-rosy-brown: #D3968C;
+  --color-midnight-green: #105666;
+
+  /* Fonts */
+  --font-display: 'Inter Tight', sans-serif;
+  --font-script: 'Pinyon Script', cursive;
+  --font-serif: 'Instrument Serif', serif;
+  --font-handwriting: 'Caveat', cursive;
+  --font-mono: 'DM Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+
+  /* Soft Shadows */
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.08), 0 16px 48px rgba(0,0,0,0.1);
+  --shadow-soft-hover: 0 8px 24px rgba(0,0,0,0.1), 0 16px 48px rgba(0,0,0,0.12), 0 24px 64px rgba(0,0,0,0.15);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+}
+
+body {
+  background-color: var(--color-bistre);
+  color: var(--color-paper);
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.bg-carnival {
+  background-color: var(--color-bistre);
+  background-image: 
+    radial-gradient(ellipse at top left, rgba(140, 9, 2, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(230, 163, 65, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(16, 86, 102, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(177, 74, 54, 0.3) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+.bg-lotus {
+  background-color: var(--color-dark-green);
+  background-image: 
+    radial-gradient(ellipse at top left, rgba(131, 153, 88, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(254, 206, 121, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(211, 150, 140, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(16, 86, 102, 0.3) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+/* Base Utility Classes for the new aesthetic */
+
+.paper-panel {
+  background-color: var(--color-paper);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  color: var(--color-bistre);
+  border-radius: 16px;
+  border: 1px solid rgba(33, 1, 0, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+.charcoal-panel {
+  background-color: var(--color-bistre);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+  color: var(--color-paper);
+  border: 1px solid rgba(247, 244, 213, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+.stitched-edge {
+  outline: 1px dashed rgba(33, 1, 0, 0.3);
+  outline-offset: -8px;
+}
+
+.notebook-ruled {
+  background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(140, 9, 2, 0.2) 31px, rgba(140, 9, 2, 0.2) 32px);
+  background-attachment: local;
+}
+
+.graph-paper {
+  background-size: 20px 20px;
+  background-image:
+    linear-gradient(to right, rgba(10, 51, 35, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 51, 35, 0.1) 1px, transparent 1px);
+}
+
+.checkerboard-divider {
+  height: 24px;
+  background-image: repeating-linear-gradient(45deg, var(--color-garnet) 25%, transparent 25%, transparent 75%, var(--color-garnet) 75%, var(--color-garnet)), repeating-linear-gradient(45deg, var(--color-garnet) 25%, var(--color-bistre) 25%, var(--color-bistre) 75%, var(--color-garnet) 75%, var(--color-garnet));
+  background-position: 0 0, 12px 12px;
+  background-size: 24px 24px;
+}
+
+.magnetic-btn {
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--shadow-soft);
+}
+
+.magnetic-btn:hover {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), var(--shadow-soft-hover);
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hide scrollbar for clean aesthetic */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
