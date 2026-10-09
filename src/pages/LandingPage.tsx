@@ -309,9 +309,8 @@ export default function LandingPage() {
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#E6A341]/40 backdrop-blur-sm rotate-2 mix-blend-multiply" />
               <div className="absolute -top-3 left-[40%] -translate-x-1/2 w-20 h-5 bg-white/40 backdrop-blur-sm -rotate-3 mix-blend-screen" />
-              <div className="w-full h-24 sm:h-36 border-2 border-dashed border-[#B14A36]/30 flex flex-col items-center justify-center mb-4 sm:mb-6 bg-[#B14A36]/5">
-                <span className="font-mono text-[10px] text-[#B14A36]/60 uppercase tracking-widest mb-2">Main Event</span>
-                <span className="font-serif italic text-2xl text-[#8C0902]/40">Poster Space</span>
+              <div className="w-full h-24 sm:h-36 mb-4 sm:mb-6 overflow-hidden border border-[#210100]/20 relative bg-[#210100]">
+                <img src="/images/events/hackathon poster.jpg" alt="Tech Symposium Poster" className="w-full h-full object-cover mix-blend-luminosity opacity-90 filter contrast-125" />
               </div>
               <div className="font-display uppercase text-2xl sm:text-4xl text-[#210100] leading-none mb-1 tracking-tighter">Tech Symposium</div>
               <div className="font-mono text-[11px] text-[#8C0902] mb-3">Oct 24 · CS Department</div>
