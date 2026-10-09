@@ -210,7 +210,7 @@ export default function LandingPage() {
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-white/40 backdrop-blur-sm rotate-2 mix-blend-overlay shadow-sm" />
               <div className="aspect-square bg-[#0A3323] overflow-hidden mb-2 sm:mb-4">
-                <img src="/images/swap/img1.jpg" alt="Math Book" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
+                <img src="/images/swap/mathematics books.jpeg" alt="Math Book" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
               </div>
               <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Math 101 Book</div>
             </motion.div>
@@ -226,7 +226,7 @@ export default function LandingPage() {
             >
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-8 bg-white/40 backdrop-blur-sm -rotate-4 mix-blend-overlay shadow-sm" />
               <div className="aspect-square bg-[#E6A341]/20 overflow-hidden mb-2 sm:mb-4">
-                <img src="/images/swap/img3.jpg" alt="Lab Coat" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
+                <img src="/images/swap/labcoat.jpeg" alt="Lab Coat" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
               </div>
               <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Lab Coat (M)</div>
             </motion.div>
@@ -242,7 +242,7 @@ export default function LandingPage() {
             >
               <div className="absolute -top-3 left-[20%] w-20 h-5 bg-white/50 backdrop-blur-md rotate-1 mix-blend-overlay shadow-sm" />
               <div className="aspect-square bg-[#D3968C]/30 overflow-hidden mb-2 sm:mb-4">
-                <img src="/images/swap/img2.jpg" alt="Calculator" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
+                <img src="/images/swap/calculator.jpeg" alt="Calculator" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
               </div>
               <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Casio Calc</div>
             </motion.div>
