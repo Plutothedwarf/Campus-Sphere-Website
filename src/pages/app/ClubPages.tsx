@@ -8,6 +8,9 @@ import { Chip } from '../../components/Chip'
 import { EventCard } from '../../components/EventCard'
 import { CreateEventModal } from '../../components/CreateEventModal'
 
+import { ManageEventModal } from '../../components/ManageEventModal'
+import { Event } from '../../store/useAppStore'
+
 // Dashboard
 export function DashboardPage() {
   const { user, clubTier, events } = useAppStore()
@@ -87,6 +90,7 @@ export function EventsPage() {
   const navigate = useNavigate()
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [managingEvent, setManagingEvent] = useState<Event | null>(null)
   
   const myEvents = events.filter(e => e.clubId === user?.clubId).sort((a, b) => a.date - b.date)
 
@@ -138,7 +142,7 @@ export function EventsPage() {
                 isClubAdmin={true}
                 isRsvpd={false}
                 isVolunteering={false}
-                onAction={() => alert('Manage Event functionality (Stage 3)')}
+                onAction={() => setManagingEvent(event)}
               />
             ))
           ) : (
@@ -151,6 +155,12 @@ export function EventsPage() {
           onClose={() => setIsCreateModalOpen(false)}
           onSubmit={handleCreateEvent}
           capacityLimit={limits.passesPerEvent === Infinity ? 'Unlimited' : limits.passesPerEvent}
+        />
+        
+        <ManageEventModal
+          isOpen={!!managingEvent}
+          onClose={() => setManagingEvent(null)}
+          event={managingEvent}
         />
       </div>
     </div>
