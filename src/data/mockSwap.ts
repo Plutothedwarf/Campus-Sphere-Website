@@ -34,7 +34,7 @@ export const MOCK_LISTINGS: Listing[] = [
     type: 'sell',
     sellerId: 'other1@somaiya.edu',
     sellerName: 'Rahul Kumar',
-    images: [],
+    images: ['/images/swap/img1.jpg'],
     createdAt: Date.now() - 1000 * 60 * 60 * 24, // 1 day ago
   },
   {
@@ -62,5 +62,31 @@ export const MOCK_LISTINGS: Listing[] = [
     sellerName: 'Aditya V',
     images: [],
     createdAt: Date.now() - 1000 * 60 * 15, // 15 mins ago
+  },
+  {
+    id: 'l5',
+    title: 'Casio Scientific Calculator Fx-991ES',
+    description: 'Works perfectly, used it for 2 semesters. No scratches.',
+    price: 600,
+    category: 'Electronics',
+    condition: 'good',
+    type: 'sell',
+    sellerId: 'other4@somaiya.edu',
+    sellerName: 'Karan M',
+    images: ['/images/swap/img2.jpg'],
+    createdAt: Date.now() - 1000 * 60 * 60 * 5,
+  },
+  {
+    id: 'l6',
+    title: 'Lab Coat (Size M)',
+    description: 'Clean, washed lab coat. Only wore it a few times for chemistry lab.',
+    price: 250,
+    category: 'Miscellaneous',
+    condition: 'like-new',
+    type: 'sell',
+    sellerId: 'other5@somaiya.edu',
+    sellerName: 'Sneha P',
+    images: ['/images/swap/img3.jpg'],
+    createdAt: Date.now() - 1000 * 60 * 60 * 12,
   }
 ]
