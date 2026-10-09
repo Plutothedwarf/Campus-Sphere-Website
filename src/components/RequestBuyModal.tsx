@@ -25,6 +25,19 @@ export function RequestBuyModal({ isOpen, onClose, onConfirm, listing, noFee }: 
 
       <div className="flex flex-col gap-4">
         
+        {listing.images && listing.images.length > 0 && (
+          <div className="w-full h-64 overflow-x-auto snap-x snap-mandatory flex gap-2 scrollbar-hide rounded-xl">
+            {listing.images.map((img, i) => (
+              <img 
+                key={i} 
+                src={img} 
+                alt={`${listing.title} view ${i + 1}`} 
+                className="w-full h-full object-cover flex-shrink-0 snap-center rounded-xl border border-[#210100]/10 bg-[#210100]/5"
+              />
+            ))}
+          </div>
+        )}
+
         {/* Calm zone for details */}
         <div className="bg-white/50 backdrop-blur-md rounded-xl p-6 border border-[#210100]/20 flex flex-col gap-3 shadow-inner">
           <div className="flex justify-between items-start">

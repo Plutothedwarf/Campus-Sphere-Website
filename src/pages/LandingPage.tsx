@@ -23,15 +23,11 @@ export default function LandingPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
 
   return (
-    <div ref={scrollRef} className="min-h-screen bg-carnival overflow-x-hidden text-[#F7F4D5]">
+    <div ref={scrollRef} className="min-h-screen bg-carnival w-full max-w-[100vw] overflow-x-hidden overflow-y-auto text-[#F7F4D5]">
 
       {/* HERO */}
       <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#210100] via-[#3A0A05] to-[#210100]">
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stucco.png')] pointer-events-none" />
-        
-        {/* Soft glowing ambient lights behind text */}
-        <motion.div style={{ y: y1 }} className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#8C0902]/20 rounded-full blur-[100px] pointer-events-none" />
-        <motion.div style={{ y: y2 }} className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] bg-[#E6A341]/10 rounded-full blur-[80px] pointer-events-none" />
 
         {/* Floating decorative accents */}
         <motion.div className="absolute top-[15%] left-[5%] pointer-events-none hidden sm:block"
@@ -161,7 +157,6 @@ export default function LandingPage() {
       {/* SWAP SECTION */}
       <section className="bg-[#0A3323] py-24 sm:py-32 px-4 sm:px-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/stucco.png')] pointer-events-none" />
-        <motion.div style={{ y: y1 }} className="absolute -top-24 -right-24 w-96 h-96 bg-[#839958]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-8 right-8 font-display text-[10rem] leading-none text-[#F7F4D5]/[0.03] pointer-events-none select-none hidden lg:block">01</div>
 
         <motion.div
@@ -260,7 +255,6 @@ export default function LandingPage() {
       {/* CLUBHUB SECTION */}
       <section className="bg-[#210100] py-24 sm:py-32 px-4 sm:px-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/stucco.png')] pointer-events-none" />
-        <motion.div style={{ y: y2 }} className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#8C0902]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-8 left-8 font-display text-[10rem] leading-none text-[#F7F4D5]/[0.02] pointer-events-none select-none hidden lg:block">02</div>
 
         <motion.div

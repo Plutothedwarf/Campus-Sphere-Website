@@ -21,6 +21,18 @@ export function ListingCard({ listing, isOwner, onAction, onDelete }: ListingCar
       whileHover={{ y: -2 }}
     >
 
+      {listing.images && listing.images.length > 0 && (
+        <div className="w-full h-48 sm:h-56 overflow-x-auto snap-x snap-mandatory flex gap-2 scrollbar-hide -mt-2 mb-2">
+          {listing.images.map((img, i) => (
+            <img 
+              key={i} 
+              src={img} 
+              alt={`${listing.title} view ${i + 1}`} 
+              className="w-full h-full object-cover flex-shrink-0 snap-center rounded-sm border border-[#210100]/10 bg-[#210100]/5"
+            />
+          ))}
+        </div>
+      )}
 
       <div className="flex justify-between items-start gap-4">
         <div>

@@ -43,6 +43,7 @@ export interface Event {
   volunteers: string[] // User emails
   volunteersNeeded: number
   category: string
+  images?: string[]
 }
 
 export interface AppState {
@@ -106,7 +107,7 @@ const DEFAULT_STATE = {
       type: 'sell',
       sellerId: 'demo.student@somaiya.edu',
       sellerName: 'Demo Student',
-      images: [],
+      images: ['/images/swap/headphones.jpg'],
       createdAt: Date.now() - 1000 * 60 * 60 * 2,
     },
     {
@@ -119,7 +120,7 @@ const DEFAULT_STATE = {
       type: 'sell',
       sellerId: 'other1@somaiya.edu',
       sellerName: 'Rahul Kumar',
-      images: ['/images/swap/img1.jpg'],
+      images: ['/images/swap/mathematics books.jpeg'],
       createdAt: Date.now() - 1000 * 60 * 60 * 24,
     },
     {
@@ -132,7 +133,7 @@ const DEFAULT_STATE = {
       type: 'rent',
       sellerId: 'other2@somaiya.edu',
       sellerName: 'Priya Singh',
-      images: [],
+      images: ['/images/swap/fridge for dorm 1.webp', '/images/swap/fridge for dorm 2.webp'],
       createdAt: Date.now() - 1000 * 60 * 60 * 48,
     },
     {
@@ -158,7 +159,7 @@ const DEFAULT_STATE = {
       type: 'sell',
       sellerId: 'other4@somaiya.edu',
       sellerName: 'Karan M',
-      images: ['/images/swap/img2.jpg'],
+      images: ['/images/swap/calculator.jpeg'],
       createdAt: Date.now() - 1000 * 60 * 60 * 5,
     },
     {
@@ -171,7 +172,7 @@ const DEFAULT_STATE = {
       type: 'sell',
       sellerId: 'other5@somaiya.edu',
       sellerName: 'Sneha P',
-      images: ['/images/swap/img3.jpg'],
+      images: ['/images/swap/labcoat.jpeg'],
       createdAt: Date.now() - 1000 * 60 * 60 * 12,
     }
   ] as Listing[],
@@ -188,7 +189,8 @@ const DEFAULT_STATE = {
       rsvps: [],
       volunteers: [],
       volunteersNeeded: 10,
-      category: 'Tech'
+      category: 'Tech',
+      images: ['/images/events/hackathon poster.jpg']
     },
     {
       id: 'e2',
@@ -202,7 +204,8 @@ const DEFAULT_STATE = {
       rsvps: ['demo.student@somaiya.edu'],
       volunteers: [],
       volunteersNeeded: 2,
-      category: 'Cultural'
+      category: 'Cultural',
+      images: ['/images/events/debating event poster.jpeg']
     },
     {
       id: 'e3',
@@ -216,7 +219,23 @@ const DEFAULT_STATE = {
       rsvps: [],
       volunteers: ['demo.student@somaiya.edu'],
       volunteersNeeded: 20,
-      category: 'Tech'
+      category: 'Tech',
+      images: ['/images/events/poster 1.jpeg']
+    },
+    {
+      id: 'e4',
+      title: 'National Youth Parliament',
+      description: 'Mock parliament session focusing on new education policies and youth empowerment.',
+      date: Date.now() + 1000 * 60 * 60 * 24 * 14,
+      location: 'Main Auditorium',
+      clubId: 'debate',
+      clubName: 'Debate Society',
+      capacity: 150,
+      rsvps: [],
+      volunteers: [],
+      volunteersNeeded: 5,
+      category: 'Cultural',
+      images: ['/images/events/youth parliament poster.jpeg']
     }
   ] as Event[],
 }

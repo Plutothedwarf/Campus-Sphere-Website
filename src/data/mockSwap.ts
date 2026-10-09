@@ -21,7 +21,7 @@ export const MOCK_LISTINGS: Listing[] = [
     type: 'sell',
     sellerId: 'demo.student@somaiya.edu', // match demo user so they can delete it
     sellerName: 'Demo Student',
-    images: [],
+    images: ['/images/swap/headphones.jpg'],
     createdAt: Date.now() - 1000 * 60 * 60 * 2, // 2 hours ago
   },
   {
@@ -34,7 +34,7 @@ export const MOCK_LISTINGS: Listing[] = [
     type: 'sell',
     sellerId: 'other1@somaiya.edu',
     sellerName: 'Rahul Kumar',
-    images: ['/images/swap/img1.jpg'],
+    images: ['/images/swap/mathematics books.jpeg'],
     createdAt: Date.now() - 1000 * 60 * 60 * 24, // 1 day ago
   },
   {
@@ -47,7 +47,7 @@ export const MOCK_LISTINGS: Listing[] = [
     type: 'rent',
     sellerId: 'other2@somaiya.edu',
     sellerName: 'Priya Singh',
-    images: [],
+    images: ['/images/swap/fridge for dorm 1.webp', '/images/swap/fridge for dorm 2.webp'],
     createdAt: Date.now() - 1000 * 60 * 60 * 48, // 2 days ago
   },
   {
@@ -73,7 +73,7 @@ export const MOCK_LISTINGS: Listing[] = [
     type: 'sell',
     sellerId: 'other4@somaiya.edu',
     sellerName: 'Karan M',
-    images: ['/images/swap/img2.jpg'],
+    images: ['/images/swap/calculator.jpeg'],
     createdAt: Date.now() - 1000 * 60 * 60 * 5,
   },
   {
@@ -86,7 +86,7 @@ export const MOCK_LISTINGS: Listing[] = [
     type: 'sell',
     sellerId: 'other5@somaiya.edu',
     sellerName: 'Sneha P',
-    images: ['/images/swap/img3.jpg'],
+    images: ['/images/swap/labcoat.jpeg'],
     createdAt: Date.now() - 1000 * 60 * 60 * 12,
   }
 ]
