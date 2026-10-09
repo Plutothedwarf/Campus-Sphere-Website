@@ -9,7 +9,7 @@ import { EventCard } from '../../components/EventCard'
 import { CreateEventModal } from '../../components/CreateEventModal'
 
 import { ManageEventModal } from '../../components/ManageEventModal'
-import { Event } from '../../store/useAppStore'
+import type { Event } from '../../store/useAppStore'
 
 // Dashboard
 export function DashboardPage() {

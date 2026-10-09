@@ -1,5 +1,5 @@
 import { Modal } from './Modal'
-import { Event } from '../store/useAppStore'
+import type { Event } from '../store/useAppStore'
 import { Button } from './Button'
 
 interface ManageEventModalProps {
@@ -12,7 +12,7 @@ export function ManageEventModal({ isOpen, onClose, event }: ManageEventModalPro
   if (!event) return null
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={`Manage: ${event.title}`}>
+    <Modal open={isOpen} onClose={onClose} title={`Manage: ${event.title}`}>
       <div className="space-y-6">
         <div>
           <h3 className="font-mono text-sm uppercase tracking-widest text-[#E6A341]/80 mb-3 border-b border-[#E6A341]/20 pb-2">
