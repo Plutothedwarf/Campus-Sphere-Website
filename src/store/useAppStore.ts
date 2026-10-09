@@ -346,7 +346,7 @@ export const useAppStore = create<AppState>()(
         })),
     }),
     {
-      name: 'campusphere-store',
+      name: 'campus-sphere-v2',
     }
   )
 )
