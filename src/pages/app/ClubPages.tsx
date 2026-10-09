@@ -212,9 +212,9 @@ export function VolunteersPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <div className="mb-8 border-b border-[#E6A341]/10 pb-6">
-                  <h3 className="font-display text-4xl text-[#F7F4D5]">{event.title}</h3>
-                  <p className="font-mono text-xs uppercase tracking-widest text-[#E6A341] mt-2">
+                <div className="mb-8 border-b border-[#210100]/10 pb-6">
+                  <h3 className="font-display text-4xl text-[#210100]">{event.title}</h3>
+                  <p className="font-mono text-xs uppercase tracking-widest text-[#8C0902] mt-2">
                     Volunteers: {event.volunteers.length} / {event.volunteersNeeded}
                   </p>
                 </div>
@@ -232,7 +232,7 @@ export function VolunteersPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="font-serif italic text-xl text-[#F7F4D5]/50">No volunteers yet.</p>
+                  <p className="font-serif italic text-xl text-[#210100]/50">No volunteers yet.</p>
                 )}
               </motion.div>
             ))}
