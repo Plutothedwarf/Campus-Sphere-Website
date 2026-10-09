@@ -70,8 +70,8 @@ export function DashboardPage() {
           >
             <div className="absolute -right-4 top-1/2 -translate-y-1/2 font-display text-[16rem] text-[#8C0902]/10 leading-none pointer-events-none">PRO</div>
             <div className="relative z-10">
-              <h2 className="font-display text-5xl mb-4 text-[#F7F4D5] tracking-tighter uppercase">QR Scanning is locked</h2>
-              <p className="font-serif italic text-3xl text-[#F7F4D5]/70 max-w-2xl leading-snug">Upgrade to Club Pro to scan student tickets at the door and manage real-time attendance.</p>
+              <h2 className="font-display text-5xl mb-4 text-[#210100] tracking-tighter uppercase">QR Scanning is locked</h2>
+              <p className="font-serif italic text-3xl text-[#210100]/70 max-w-2xl leading-snug">Upgrade to Club Pro to scan student tickets at the door and manage real-time attendance.</p>
             </div>
           </motion.div>
         )}
@@ -116,8 +116,8 @@ export function EventsPage() {
 
         <div className="mb-12 flex flex-col md:flex-row justify-between items-center gap-6 p-8 paper-panel bg-white/5 backdrop-blur-sm">
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-[#E6A341]/60">Monthly Quota</span>
-            <div className="font-display text-4xl text-[#F7F4D5] mt-2">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#8C0902]/60">Monthly Quota</span>
+            <div className="font-display text-4xl text-[#210100] mt-2">
               {limits.eventsPerMonth === Infinity ? 'Unlimited' : `${Math.max(0, limits.eventsPerMonth - myEvents.length)} left`}
             </div>
           </div>
@@ -186,8 +186,8 @@ export function VolunteersPage() {
             animate={{ opacity: 1 }}
           >
             <div className="absolute -right-4 top-1/2 -translate-y-1/2 font-display text-[12rem] text-[#8C0902]/10 leading-none pointer-events-none">PRO</div>
-            <h2 className="font-display text-4xl text-[#F7F4D5]">Pipeline is locked</h2>
-            <p className="font-serif italic text-2xl text-[#F7F4D5]/70 max-w-xl">
+            <h2 className="font-display text-4xl text-[#210100]">Pipeline is locked</h2>
+            <p className="font-serif italic text-2xl text-[#210100]/70 max-w-xl">
               Free tier only tracks basic sign-ups ({totalVolunteers} current sign-ups). Upgrade to Pro for the full Kanban pipeline, application reviews, and bulk certificate generation.
             </p>
             <Button onClick={() => navigate('/pricing')}>Upgrade to unlock</Button>
@@ -258,10 +258,10 @@ export function FinancePage() {
           animate={{ opacity: 1 }}
         >
           <div className="absolute -right-4 top-1/2 -translate-y-1/2 font-display text-[12rem] text-[#8C0902]/10 leading-none pointer-events-none">PRO</div>
-          <div className="font-display text-4xl text-[#F7F4D5]">
+          <div className="font-display text-4xl text-[#210100]">
             {limits.financials ? 'Finance tools in Stage 3' : 'Finance is a Pro feature'}
           </div>
-          <p className="font-serif italic text-2xl text-[#F7F4D5]/70 max-w-xl">
+          <p className="font-serif italic text-2xl text-[#210100]/70 max-w-xl">
             {limits.financials
               ? 'Budget tracking, income from events, and split payments among core team members.'
               : 'Upgrade to Club Pro to access budget tracking, event income and split payments.'}
