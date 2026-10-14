@@ -8,6 +8,7 @@ import type { StudentTier } from '../store/useAppStore'
 const STUDENT_NAV = [
   { path: '/app/home', label: 'Home' },
   { path: '/app/clubhub', label: 'ClubHub' },
+  { path: '/app/campus', label: 'Campus' },
   { path: '/app/profile', label: 'Profile' },
 ]
 
@@ -78,10 +79,11 @@ export default function AppShell() {
         </button>
 
         {/* Module context */}
-        <div className="hidden md:flex items-center gap-2 text-[#F7F4D5]/30">
-          <span className="text-[#F7F4D5]/20">·</span>
-          <span className="font-mono text-[11px] uppercase tracking-widest text-[#F7F4D5]/40">
+        <div className="hidden md:flex items-center gap-2 text-[#E6A341]">
+          <span className="text-[#E6A341]/40">·</span>
+          <span className="font-mono text-[11px] uppercase tracking-widest text-[#E6A341] font-semibold">
             {location.pathname.includes('/clubhub') ? 'ClubHub' :
+             location.pathname.includes('/campus') ? 'Campus' :
              location.pathname.includes('/events') ? 'Events' :
              location.pathname.includes('/volunteers') ? 'Volunteers' :
              location.pathname.includes('/finance') ? 'Finance' :
@@ -102,7 +104,7 @@ export default function AppShell() {
           {/* User info */}
           <div className="hidden md:flex flex-col items-end">
             <span className="font-display text-sm text-[#F7F4D5] leading-tight truncate max-w-[120px]">{user.name}</span>
-            <span className="font-mono text-[10px] text-[#F7F4D5]/40 uppercase tracking-widest leading-tight">{role === 'club' ? user.clubName || 'Club' : 'Student'}</span>
+            <span className="font-mono text-[10px] text-[#E6A341] font-semibold uppercase tracking-widest leading-tight">{role === 'club' ? user.clubName || 'Club Admin' : 'Student'}</span>
           </div>
 
           {/* Avatar */}

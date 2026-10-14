@@ -6,6 +6,8 @@ import AppShell from './layouts/AppShell'
 import HomePage from './pages/app/HomePage'
 import ClubHubPage from './pages/app/ClubHubPage'
 import ProfilePage from './pages/app/ProfilePage'
+import CampusPage from './pages/app/CampusPage'
+import ClubProfilePage from './pages/app/ClubProfilePage'
 import { DashboardPage, EventsPage, VolunteersPage, FinancePage } from './pages/app/ClubPages'
 import DemoSwitcher from './components/DemoSwitcher'
 import { useAppStore } from './store/useAppStore'
@@ -38,6 +40,8 @@ export default function App() {
           <Route path="home" element={<HomePage />} />
           <Route path="swap" element={<Navigate to="/app/clubhub" replace />} />
           <Route path="clubhub" element={<ClubHubPage />} />
+          <Route path="campus" element={<CampusPage />} />
+          <Route path="campus/club/:clubId" element={<ClubProfilePage />} />
           <Route path="profile" element={<ProfilePage />} />
 
           {/* Club admin routes */}
