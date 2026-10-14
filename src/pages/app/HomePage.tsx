@@ -4,26 +4,23 @@ import { Chip } from '../../components/Chip'
 import { motion } from 'framer-motion'
 import { Button } from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
-import { SWAP_LIMITS, CLUBHUB_STUDENT_LIMITS } from '../../config/plans'
+import { CLUBHUB_STUDENT_LIMITS } from '../../config/plans'
 
 export default function HomePage() {
-  const { user, role, studentTier, clubTier } = useAppStore()
+  const { user, role, studentTier, clubTier, events } = useAppStore()
   const navigate = useNavigate()
 
   const tier = role === 'club' ? clubTier : studentTier
   const greeting = new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening'
 
-  const swapLimits = SWAP_LIMITS[studentTier]
-  const requestsLeft = swapLimits.requestsPerMonth === Infinity ? 'Unlimited' : Math.max(0, swapLimits.requestsPerMonth - useAppStore.getState().requestCount)
-  const activeListingsCount = useAppStore.getState().activeListingCount
-  const myRsvps = useAppStore.getState().events.filter(e => e.rsvps.includes(user?.email || '')).length
+  const myRsvps = events.filter(e => e.rsvps.includes(user?.email || '')).length
+  const myVolunteering = events.filter(e => e.volunteers.includes(user?.email || '')).length
+  const totalUpcomingEvents = events.filter(e => e.date > Date.now()).length
 
   return (
     <div className="min-h-screen bg-transparent px-4 py-12 relative overflow-hidden text-[#F7F4D5]">
       {/* Texture overlay */}
       <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stucco.png')] mix-blend-overlay pointer-events-none"></div>
-
-
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Greeting */}
@@ -44,7 +41,7 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* Welcome message - Professional */}
+        {/* Welcome message */}
         <motion.div
           className="relative max-w-3xl mb-12"
           initial={{ y: 20, opacity: 0 }}
@@ -52,39 +49,42 @@ export default function HomePage() {
           transition={{ delay: 0.1 }}
         >
           <h2 className="font-display text-4xl md:text-5xl text-[#F7F4D5] uppercase tracking-tighter mb-4 leading-none">
-            {role === 'club' ? 'Dashboard Overview' : 'Your Campus Overview'}
+            {role === 'club' ? 'Club Management Dashboard' : 'Your Campus Hub'}
           </h2>
           <p className="font-serif italic text-xl md:text-2xl text-[#E6A341] leading-snug">
             {role === 'club'
-              ? 'Manage your events and track volunteer signups.'
-              : 'Quick stats and access to marketplace and events.'}
+              ? 'Organize events, review volunteer rosters, and track passes.'
+              : 'Discover campus fests, workshops, RSVPs, and volunteer crews.'}
           </p>
         </motion.div>
 
         {/* Stats Row */}
         {role === 'student' && (
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-16"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <div className="bg-white/5 backdrop-blur-md border border-[#F7F4D5]/10 p-6 rounded-xl">
-              <p className="font-mono text-xs uppercase tracking-widest text-[#F7F4D5]/50 mb-2">Buy Requests Left</p>
-              <p className="font-display text-4xl text-[#F7F4D5]">{requestsLeft}</p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-md border border-[#F7F4D5]/10 p-6 rounded-xl">
-              <p className="font-mono text-xs uppercase tracking-widest text-[#F7F4D5]/50 mb-2">Active Listings</p>
-              <p className="font-display text-4xl text-[#F7F4D5]">{activeListingsCount}</p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-md border border-[#F7F4D5]/10 p-6 rounded-xl col-span-2 md:col-span-1">
+            <div className="bg-white/5 backdrop-blur-md border border-[#F7F4D5]/10 p-6 rounded-xl hover:border-[#E6A341]/40 transition-colors">
               <p className="font-mono text-xs uppercase tracking-widest text-[#F7F4D5]/50 mb-2">Upcoming RSVPs</p>
               <p className="font-display text-4xl text-[#F7F4D5]">{myRsvps}</p>
+              <p className="font-serif italic text-sm text-[#E6A341] mt-1">Confirmed passes</p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-md border border-[#F7F4D5]/10 p-6 rounded-xl hover:border-[#E6A341]/40 transition-colors">
+              <p className="font-mono text-xs uppercase tracking-widest text-[#F7F4D5]/50 mb-2">Volunteer Roles</p>
+              <p className="font-display text-4xl text-[#F7F4D5]">{myVolunteering}</p>
+              <p className="font-serif italic text-sm text-[#E6A341] mt-1">Active crew slots</p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-md border border-[#F7F4D5]/10 p-6 rounded-xl hover:border-[#E6A341]/40 transition-colors">
+              <p className="font-mono text-xs uppercase tracking-widest text-[#F7F4D5]/50 mb-2">Campus Events Live</p>
+              <p className="font-display text-4xl text-[#F7F4D5]">{totalUpcomingEvents}</p>
+              <p className="font-serif italic text-sm text-[#E6A341] mt-1">Open for registration</p>
             </div>
           </motion.div>
         )}
 
-        {/* Quick actions (Scrapbook style cards) */}
+        {/* Quick actions for student & club */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16 relative">
           
           <motion.button
@@ -92,19 +92,26 @@ export default function HomePage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            onClick={() => navigate('/app/swap')}
+            onClick={() => navigate(role === 'club' ? '/app/events' : '/app/clubhub')}
           >
             {/* Base card */}
-            <div className="absolute inset-0 bg-[#0A3323] border border-[#839958]/30 rounded-2xl shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-soft-hover)] transition-all duration-300 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#839958]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-[#8C0902] border border-[#E6A341]/30 rounded-2xl shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-soft-hover)] transition-all duration-300 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#E6A341]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="p-8 flex flex-col h-full justify-between relative z-10">
                 <div>
-                  <h3 className="font-display text-4xl sm:text-5xl text-[#839958] uppercase tracking-tighter">Campus Swap</h3>
-                  <p className="font-serif italic text-xl sm:text-2xl text-[#D3968C] mt-2">Buy, sell and rent</p>
+                  <div className="font-mono text-xs uppercase tracking-widest text-[#E6A341] mb-2 font-bold">
+                    {role === 'club' ? 'Club Management' : 'Explore Events'}
+                  </div>
+                  <h3 className="font-display text-4xl sm:text-5xl text-[#F7F4D5] uppercase tracking-tighter">
+                    {role === 'club' ? 'Manage Events' : 'ClubHub Events'}
+                  </h3>
+                  <p className="font-serif italic text-xl sm:text-2xl text-[#E6A341] mt-2">
+                    {role === 'club' ? 'Create, update & monitor tickets' : 'Hackathons, debates, fests & workshops'}
+                  </p>
                 </div>
-                <div className="font-mono text-sm uppercase tracking-widest text-[#F7F4D5]/50 border-t border-[#839958]/30 pt-4 flex items-center justify-between">
-                  <span>Enter marketplace</span>
-                  <span>→</span>
+                <div className="font-mono text-sm uppercase tracking-widest text-[#F7F4D5]/70 border-t border-[#E6A341]/30 pt-4 flex items-center justify-between">
+                  <span>{role === 'club' ? 'View all events' : 'Browse & RSVP'}</span>
+                  <span className="text-xl">→</span>
                 </div>
               </div>
             </div>
@@ -115,19 +122,26 @@ export default function HomePage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            onClick={() => navigate('/app/clubhub')}
+            onClick={() => navigate(role === 'club' ? '/app/volunteers' : '/app/clubhub')}
           >
             {/* Base card */}
-            <div className="absolute inset-0 bg-[#8C0902] border border-[#E6A341]/30 rounded-2xl shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-soft-hover)] transition-all duration-300 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#E6A341]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-[#1A0503] border border-[#E6A341]/30 rounded-2xl shadow-[var(--shadow-soft)] group-hover:shadow-[var(--shadow-soft-hover)] transition-all duration-300 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#8C0902]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="p-8 flex flex-col h-full justify-between relative z-10">
                 <div>
-                  <h3 className="font-display text-4xl sm:text-5xl text-[#F7F4D5] uppercase tracking-tighter">ClubHub</h3>
-                  <p className="font-serif italic text-xl sm:text-2xl text-[#E6A341] mt-2">Events and volunteer</p>
+                  <div className="font-mono text-xs uppercase tracking-widest text-[#E6A341] mb-2 font-bold">
+                    {role === 'club' ? 'Volunteer Roster' : 'Campus Leadership'}
+                  </div>
+                  <h3 className="font-display text-4xl sm:text-5xl text-[#F7F4D5] uppercase tracking-tighter">
+                    {role === 'club' ? 'Volunteer Board' : 'Volunteer Crew'}
+                  </h3>
+                  <p className="font-serif italic text-xl sm:text-2xl text-[#E6A341] mt-2">
+                    {role === 'club' ? 'Approve applicants & coordinate teams' : 'Join organizing crews & earn certificates'}
+                  </p>
                 </div>
-                <div className="font-mono text-sm uppercase tracking-widest text-[#F7F4D5]/50 border-t border-[#E6A341]/30 pt-4 flex items-center justify-between">
-                  <span>Explore events</span>
-                  <span>→</span>
+                <div className="font-mono text-sm uppercase tracking-widest text-[#F7F4D5]/70 border-t border-[#E6A341]/30 pt-4 flex items-center justify-between">
+                  <span>{role === 'club' ? 'Review roster' : 'Find opportunities'}</span>
+                  <span className="text-xl">→</span>
                 </div>
               </div>
             </div>
@@ -145,7 +159,9 @@ export default function HomePage() {
           >
             <div>
               <p className="font-display text-4xl text-[#E6A341] mb-2 uppercase tracking-tighter">You are on the free tier</p>
-              <p className="font-serif italic text-2xl text-[#F7F4D5]/70">Upgrade to get more requests, categories and certificates.</p>
+              <p className="font-serif italic text-2xl text-[#F7F4D5]/70">
+                Upgrade to unlock verified digital certificates, priority RSVPs, and volunteer tracking.
+              </p>
             </div>
             <Button size="lg" onClick={() => navigate('/pricing')}>Upgrade</Button>
           </motion.div>

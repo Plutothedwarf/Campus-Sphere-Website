@@ -13,23 +13,6 @@ export interface User {
   clubName?: string
 }
 
-export type ListingCondition = 'new' | 'like-new' | 'good' | 'fair'
-export type ListingType = 'sell' | 'rent'
-
-export interface Listing {
-  id: string
-  title: string
-  description: string
-  price: number
-  category: string
-  condition: ListingCondition
-  type: ListingType
-  sellerId: string
-  sellerName: string
-  images: string[]
-  createdAt: number
-}
-
 export interface Event {
   id: string
   title: string
@@ -54,14 +37,6 @@ export interface AppState {
   clubTier: ClubTier
   isLoggedIn: boolean
 
-  // Swap counters
-  requestCount: number
-  categoriesUsed: string[]
-  activeListingCount: number
-  
-  // Swap data
-  listings: Listing[]
-
   // ClubHub data
   events: Event[]
 
@@ -71,15 +46,7 @@ export interface AppState {
   setStudentTier: (tier: StudentTier) => void
   setClubTier: (tier: ClubTier) => void
   setRole: (role: Role) => void
-  incrementRequest: () => void
-  addCategory: (cat: string) => void
-  incrementListing: () => void
-  decrementListing: () => void
   resetDemoData: () => void
-
-  // Swap actions
-  addListing: (listing: Omit<Listing, 'id' | 'createdAt'>) => void
-  deleteListing: (id: string) => void
 
   // ClubHub actions
   addEvent: (event: Omit<Event, 'id' | 'rsvps' | 'volunteers'>) => void
@@ -93,89 +60,6 @@ const DEFAULT_STATE = {
   studentTier: 'free' as StudentTier,
   clubTier: 'free' as ClubTier,
   isLoggedIn: false,
-  requestCount: 0,
-  categoriesUsed: [],
-  activeListingCount: 1, // Demo student starts with 1 active listing
-  listings: [
-    {
-      id: 'l1',
-      title: 'Noise Cancelling Headphones',
-      description: 'Barely used, comes with the case. Upgraded to AirPods so selling these.',
-      price: 3500,
-      category: 'Electronics',
-      condition: 'like-new',
-      type: 'sell',
-      sellerId: 'demo.student@somaiya.edu',
-      sellerName: 'Demo Student',
-      images: ['/images/swap/headphones.jpg'],
-      createdAt: Date.now() - 1000 * 60 * 60 * 2,
-    },
-    {
-      id: 'l2',
-      title: 'Engineering Mathematics (4th Ed)',
-      description: 'A bit worn out but no pages missing. Has some highlights.',
-      price: 450,
-      category: 'Books',
-      condition: 'fair',
-      type: 'sell',
-      sellerId: 'other1@somaiya.edu',
-      sellerName: 'Rahul Kumar',
-      images: ['/images/swap/mathematics books.jpeg'],
-      createdAt: Date.now() - 1000 * 60 * 60 * 24,
-    },
-    {
-      id: 'l3',
-      title: 'Mini Fridge for Dorm',
-      description: 'Renting out my mini fridge for the semester. Works perfectly, freezes water in 2 hours.',
-      price: 500,
-      category: 'Room Essentials',
-      condition: 'good',
-      type: 'rent',
-      sellerId: 'other2@somaiya.edu',
-      sellerName: 'Priya Singh',
-      images: ['/images/swap/fridge for dorm 1.webp', '/images/swap/fridge for dorm 2.webp'],
-      createdAt: Date.now() - 1000 * 60 * 60 * 48,
-    },
-    {
-      id: 'l4',
-      title: 'Coldplay Concert Tickets x2',
-      description: 'Cannot go due to mid-terms :( Selling at original price, no scalping.',
-      price: 12000,
-      category: 'Tickets',
-      condition: 'new',
-      type: 'sell',
-      sellerId: 'other3@somaiya.edu',
-      sellerName: 'Aditya V',
-      images: [],
-      createdAt: Date.now() - 1000 * 60 * 15,
-    },
-    {
-      id: 'l5',
-      title: 'Casio Scientific Calculator Fx-991ES',
-      description: 'Works perfectly, used it for 2 semesters. No scratches.',
-      price: 600,
-      category: 'Electronics',
-      condition: 'good',
-      type: 'sell',
-      sellerId: 'other4@somaiya.edu',
-      sellerName: 'Karan M',
-      images: ['/images/swap/calculator.jpeg'],
-      createdAt: Date.now() - 1000 * 60 * 60 * 5,
-    },
-    {
-      id: 'l6',
-      title: 'Lab Coat (Size M)',
-      description: 'Clean, washed lab coat. Only wore it a few times for chemistry lab.',
-      price: 250,
-      category: 'Miscellaneous',
-      condition: 'like-new',
-      type: 'sell',
-      sellerId: 'other5@somaiya.edu',
-      sellerName: 'Sneha P',
-      images: ['/images/swap/labcoat.jpeg'],
-      createdAt: Date.now() - 1000 * 60 * 60 * 12,
-    }
-  ] as Listing[],
   events: [
     {
       id: 'e1',
@@ -255,54 +139,10 @@ export const useAppStore = create<AppState>()(
 
       setRole: (role) => set({ role }),
 
-      incrementRequest: () =>
-        set((state) => ({ requestCount: state.requestCount + 1 })),
-
-      addCategory: (cat) =>
-        set((state) => ({
-          categoriesUsed: state.categoriesUsed.includes(cat)
-            ? state.categoriesUsed
-            : [...state.categoriesUsed, cat],
-        })),
-
-      incrementListing: () =>
-        set((state) => ({ activeListingCount: state.activeListingCount + 1 })),
-
-      decrementListing: () =>
-        set((state) => ({
-          activeListingCount: Math.max(0, state.activeListingCount - 1),
-        })),
-
       resetDemoData: () =>
         set({
-          requestCount: 0,
-          categoriesUsed: [],
-          activeListingCount: 1,
-          listings: DEFAULT_STATE.listings,
           events: DEFAULT_STATE.events,
         }),
-
-      addListing: (listingData) =>
-        set((state) => {
-          const newListing: Listing = {
-            ...listingData,
-            id: 'l' + Math.random().toString(36).substring(7),
-            createdAt: Date.now(),
-          }
-          return {
-            listings: [newListing, ...state.listings],
-            activeListingCount: state.activeListingCount + 1,
-            categoriesUsed: state.categoriesUsed.includes(listingData.category)
-              ? state.categoriesUsed
-              : [...state.categoriesUsed, listingData.category],
-          }
-        }),
-
-      deleteListing: (id) =>
-        set((state) => ({
-          listings: state.listings.filter((l) => l.id !== id),
-          activeListingCount: Math.max(0, state.activeListingCount - 1),
-        })),
 
       addEvent: (eventData) =>
         set((state) => {
@@ -346,7 +186,7 @@ export const useAppStore = create<AppState>()(
         })),
     }),
     {
-      name: 'campus-sphere-v2',
+      name: 'campus-sphere-clubhub-v1',
     }
   )
 )

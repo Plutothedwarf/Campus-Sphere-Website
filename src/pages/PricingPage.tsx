@@ -10,17 +10,14 @@ const STUDENT_PLANS = [
     period: 'always',
     color: '#2EC4A0',
     features: [
-      { label: 'Buy requests', value: '5 per month' },
-      { label: 'Categories (Swap)', value: '1 category' },
-      { label: 'Active listings (Swap)', value: '3 listings' },
-      { label: 'Seller premium markup', value: 'No' },
-      { label: 'Verified seller badge', value: 'No' },
-      { label: 'Priority placement', value: 'No' },
-      { label: 'Convenience fee', value: 'Rs 20 per item' },
-      { label: 'Calendar access', value: 'Yes' },
-      { label: 'Basic volunteer sign-up', value: 'Yes' },
-      { label: 'Profile preferences', value: 'No' },
-      { label: 'Digital certificates', value: 'No' },
+      { label: 'Event discovery & RSVPs', value: 'Unlimited' },
+      { label: 'Instant digital QR pass', value: 'Yes' },
+      { label: 'Campus calendar & reminders', value: 'Yes' },
+      { label: 'Basic volunteer sign-ups', value: 'Yes' },
+      { label: 'Profile club preferences', value: 'No' },
+      { label: 'Priority early-bird RSVPs', value: 'No' },
+      { label: 'Volunteer hours log', value: 'No' },
+      { label: 'Verified digital certificates', value: 'No' },
     ],
   },
   {
@@ -31,17 +28,14 @@ const STUDENT_PLANS = [
     color: '#FFD23F',
     highlight: false,
     features: [
-      { label: 'Buy requests', value: '5 per month' },
-      { label: 'Categories (Swap)', value: 'All categories' },
-      { label: 'Active listings (Swap)', value: 'Unlimited' },
-      { label: 'Seller premium markup', value: '+5% added to price' },
-      { label: 'Verified seller badge', value: 'No' },
-      { label: 'Priority placement', value: 'No' },
-      { label: 'Convenience fee', value: 'Rs 20 per item' },
-      { label: 'Calendar access', value: 'Yes' },
-      { label: 'Basic volunteer sign-up', value: 'Yes' },
-      { label: 'Profile preferences', value: 'Yes' },
-      { label: 'Digital certificates', value: 'No' },
+      { label: 'Event discovery & RSVPs', value: 'Unlimited' },
+      { label: 'Instant digital QR pass', value: 'Yes' },
+      { label: 'Campus calendar & reminders', value: 'Yes' },
+      { label: 'Basic volunteer sign-ups', value: 'Yes' },
+      { label: 'Profile club preferences', value: 'Yes' },
+      { label: 'Priority early-bird RSVPs', value: 'Yes' },
+      { label: 'Volunteer hours log', value: 'Yes' },
+      { label: 'Verified digital certificates', value: 'No' },
     ],
   },
   {
@@ -52,17 +46,14 @@ const STUDENT_PLANS = [
     color: '#FF5FA2',
     highlight: true,
     features: [
-      { label: 'Buy requests', value: 'Unlimited' },
-      { label: 'Categories (Swap)', value: 'All categories' },
-      { label: 'Active listings (Swap)', value: 'Unlimited' },
-      { label: 'Seller premium markup', value: 'Enabled' },
-      { label: 'Verified seller badge', value: 'Yes' },
-      { label: 'Priority placement', value: 'Yes' },
-      { label: 'Convenience fee', value: 'Waived' },
-      { label: 'Calendar access', value: 'Yes' },
-      { label: 'Basic volunteer sign-up', value: 'Yes' },
-      { label: 'Profile preferences', value: 'Yes' },
-      { label: 'Digital certificates', value: 'Yes' },
+      { label: 'Event discovery & RSVPs', value: 'Unlimited' },
+      { label: 'Instant digital QR pass', value: 'Yes' },
+      { label: 'Campus calendar & reminders', value: 'Yes' },
+      { label: 'Basic volunteer sign-ups', value: 'Yes' },
+      { label: 'Profile club preferences', value: 'Yes' },
+      { label: 'Priority early-bird RSVPs', value: 'Yes' },
+      { label: 'Volunteer hours log', value: 'Yes' },
+      { label: 'Verified digital certificates', value: 'Yes' },
     ],
   },
 ]
@@ -127,7 +118,7 @@ export default function PricingPage() {
           Simple pricing.
         </h1>
         <p className="font-serif italic text-3xl text-[#E6A341] max-w-xl mx-auto">
-          One student subscription unlocks both Campus Swap and ClubHub. Club admins have their own separate plan.
+          Dedicated student access to every club, event, and volunteer credential across campus. Club organizers have their own pro toolset.
         </p>
       </section>
 
@@ -179,21 +170,21 @@ export default function PricingPage() {
           </div>
 
           <div className="mt-16 p-8 bg-[#210100] border-2 border-dashed border-[#E6A341]/40 max-w-3xl mx-auto text-center">
-            <p className="font-display text-3xl text-[#E6A341] uppercase tracking-tighter mb-2">Important: Convenience fee</p>
+            <p className="font-display text-3xl text-[#E6A341] uppercase tracking-tighter mb-2">Verified Event Certificates</p>
             <p className="font-serif italic text-xl text-[#F7F4D5]/80">
-              Free and Freemium buyers pay Rs 20 convenience fee per purchase. Premium buyers get this waived. Freemium sellers have a 5% markup added on top of their listed price.
+              Digital certificates earned on ClubHub feature secure verification stamps and QR codes for extracurricular accreditation, resumes, and portfolio reviews.
             </p>
           </div>
         </div>
       </section>
 
       {/* Club Plans */}
-      <section className="bg-[#0A3323] py-24 px-4 relative overflow-hidden mt-12 border-y-2 border-[#839958]/30">
+      <section className="bg-[#1A0503] py-24 px-4 relative overflow-hidden mt-12 border-y-2 border-[#E6A341]/30">
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="font-display text-5xl text-[#F7F4D5] uppercase tracking-tighter mb-4 text-center">
             Club Admin Plans
           </h2>
-          <p className="font-serif italic text-2xl text-[#839958] mb-12 text-center">Run events. Manage volunteers. Handle money.</p>
+          <p className="font-serif italic text-2xl text-[#E6A341] mb-12 text-center">Run events. Manage volunteers. Handle finances.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto">
             {CLUB_PLANS.map((plan, i) => (
@@ -242,11 +233,11 @@ export default function PricingPage() {
         <div className="max-w-3xl mx-auto flex flex-col gap-8">
           <h2 className="font-display text-5xl text-[#E6A341] uppercase tracking-tighter text-center mb-4">Quick clarifications</h2>
           {[
-            ['Does free tier expire?', 'Never. Free is free forever.'],
-            ['Do I pay for Swap and ClubHub separately?', 'One student subscription covers both. No double billing.'],
-            ['Can I switch tiers?', 'Yes, upgrade or downgrade whenever. In demo mode, use the ⚡ panel.'],
-            ['Are there separate club admin accounts?', 'Club accounts are separate from student accounts. Same email domain, different flow.'],
-            ['What happens to my active listings if I downgrade?', 'Existing listings stay active. New ones are blocked by the limit.'],
+            ['Does the student free tier expire?', 'Never. Free is free forever for attending events and volunteering.'],
+            ['How do digital QR passes work?', 'Once you RSVP to an event, an entry QR pass is instantly generated in your tickets tab. Club admins scan it at the door.'],
+            ['Can I volunteer for any club event?', 'Yes! Any registered student can sign up for open volunteer slots across tech, cultural, and sports fests.'],
+            ['Are there separate club admin accounts?', 'Yes, club organizer accounts have distinct tools for ticketing, attendee scanning, volunteer pipelines, and team financials.'],
+            ['How are digital certificates issued?', 'Certificates are automatically generated and stamped upon verified attendance or completion of volunteer duties.'],
           ].map(([q, a]) => (
             <div key={q} className="border-2 border-[#E6A341]/20 p-6 bg-[#210100]">
               <p className="font-display text-2xl text-[#F7F4D5] mb-2">{q}</p>

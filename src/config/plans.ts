@@ -25,38 +25,6 @@ export const CLUB_PRICES = {
   pro: 699,
 }
 
-// Swap rules
-export const BUYER_CONVENIENCE_FEE = 20
-export const FREEMIUM_SELLER_PREMIUM_PCT = 5
-
-export const SWAP_LIMITS = {
-  free: {
-    requestsPerMonth: 5,
-    categories: 1,
-    activeListings: 3,
-    sellerPremium: false,
-    verifiedBadge: false,
-    priorityPlacement: false,
-  },
-  freemium: {
-    requestsPerMonth: 5,
-    categories: Infinity,
-    activeListings: Infinity,
-    sellerPremium: true,
-    verifiedBadge: false,
-    priorityPlacement: false,
-  },
-  premium: {
-    requestsPerMonth: Infinity,
-    categories: Infinity,
-    activeListings: Infinity,
-    sellerPremium: true,
-    verifiedBadge: true,
-    priorityPlacement: true,
-    noConvenienceFee: true,
-  },
-}
-
 // ClubHub student rules
 export const CLUBHUB_STUDENT_LIMITS = {
   free: {
@@ -64,20 +32,27 @@ export const CLUBHUB_STUDENT_LIMITS = {
     basicVolunteer: true,
     profilePreferences: false,
     digitalCertificates: false,
+    priorityRsvp: false,
+    volunteerHoursTracking: false,
   },
   freemium: {
     calendar: true,
     basicVolunteer: true,
     profilePreferences: true,
     digitalCertificates: false,
+    priorityRsvp: true,
+    volunteerHoursTracking: true,
   },
   premium: {
     calendar: true,
     basicVolunteer: true,
     profilePreferences: true,
     digitalCertificates: true,
+    priorityRsvp: true,
+    volunteerHoursTracking: true,
   },
 }
+
 
 // Club limits
 export const CLUB_LIMITS = {

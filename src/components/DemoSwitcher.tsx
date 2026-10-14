@@ -10,7 +10,6 @@ const ROUTES = [
   { label: 'Login (Student)', path: '/login?role=student' },
   { label: 'Login (Club)', path: '/login?role=club' },
   { label: 'Home', path: '/app/home' },
-  { label: 'Swap', path: '/app/swap' },
   { label: 'ClubHub', path: '/app/clubhub' },
   { label: 'Profile', path: '/app/profile' },
   { label: 'Dashboard', path: '/app/dashboard' },

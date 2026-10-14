@@ -245,9 +245,18 @@ export function VolunteersPage() {
 
 // Finance
 export function FinancePage() {
-  const { clubTier } = useAppStore()
+  const { user, clubTier } = useAppStore()
   const limits = CLUB_LIMITS[clubTier]
   const navigate = useNavigate()
+
+  const [transactions] = useState([
+    { id: 't1', date: 'Oct 12, 2026', desc: 'Hackathon Early-Bird Passes (80x)', cat: 'Ticketing', amount: 24000, type: 'in' },
+    { id: 't2', date: 'Oct 10, 2026', desc: 'Somaiya Student Council Grant', cat: 'Sponsorship', amount: 35000, type: 'in' },
+    { id: 't3', date: 'Oct 08, 2026', desc: 'Auditorium Audio & Lighting Rental', cat: 'Logistics', amount: 12500, type: 'out' },
+    { id: 't4', date: 'Oct 05, 2026', desc: 'Refreshments & Volunteer Red Bull', cat: 'Catering', amount: 9000, type: 'out' },
+    { id: 't5', date: 'Oct 02, 2026', desc: 'Inter-College Debate Delegate Passes', cat: 'Ticketing', amount: 15200, type: 'in' },
+    { id: 't6', date: 'Sep 28, 2026', desc: 'Hackathon Prize Pool Allocation', cat: 'Prizes', amount: 10000, type: 'out' },
+  ])
 
   return (
     <div className="min-h-screen bg-transparent px-4 py-12 relative overflow-hidden text-[#F7F4D5]">
@@ -257,29 +266,108 @@ export function FinancePage() {
         <div className="border-b-2 border-[#E6A341]/20 pb-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="font-display text-6xl md:text-8xl uppercase tracking-tighter text-[#F7F4D5] mix-blend-difference">Finance</h1>
-            <p className="font-serif italic text-3xl text-[#E6A341] mt-2">Track money and split with your team</p>
+            <p className="font-serif italic text-3xl text-[#E6A341] mt-2">Track budget, pass revenue, and payouts for {user?.clubName}</p>
           </div>
           <Chip variant={clubTier === 'pro' ? 'club-pro' : 'club-free'} />
         </div>
 
-        <motion.div
-          className="p-12 paper-panel bg-white/5 backdrop-blur-sm relative overflow-hidden flex flex-col items-start gap-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          <div className="absolute -right-4 top-1/2 -translate-y-1/2 font-display text-[12rem] text-[#8C0902]/10 leading-none pointer-events-none">PRO</div>
-          <div className="font-display text-4xl text-[#210100]">
-            {limits.financials ? 'Finance tools in Stage 3' : 'Finance is a Pro feature'}
-          </div>
-          <p className="font-serif italic text-2xl text-[#210100]/70 max-w-xl">
-            {limits.financials
-              ? 'Budget tracking, income from events, and split payments among core team members.'
-              : 'Upgrade to Club Pro to access budget tracking, event income and split payments.'}
-          </p>
-          {!limits.financials && (
+        {!limits.financials ? (
+          <motion.div
+            className="p-12 paper-panel bg-white/5 backdrop-blur-sm relative overflow-hidden flex flex-col items-start gap-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="absolute -right-4 top-1/2 -translate-y-1/2 font-display text-[12rem] text-[#8C0902]/10 leading-none pointer-events-none">PRO</div>
+            <div className="font-display text-4xl text-[#210100]">Finance is a Pro Feature</div>
+            <p className="font-serif italic text-2xl text-[#210100]/70 max-w-xl">
+              Upgrade to Club Pro to track event ticket revenues, manage operational budgets, and automatically split proceeds among core organizers.
+            </p>
             <Button onClick={() => navigate('/pricing')}>Upgrade to Club Pro</Button>
-          )}
-        </motion.div>
+          </motion.div>
+        ) : (
+          <div className="space-y-8">
+            {/* Metric Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { label: 'Total Inflow', value: '₹74,200', desc: 'Passes & Grants', color: 'text-green-400' },
+                { label: 'Expenses Paid', value: '₹31,500', desc: 'Logistics & Venues', color: 'text-[#E6A341]' },
+                { label: 'Net Treasury', value: '₹42,700', desc: 'Available Balance', color: 'text-[#F7F4D5]' },
+                { label: 'Split Payouts', value: '3 Active', desc: 'Core Committee', color: 'text-blue-300' },
+              ].map((m, i) => (
+                <div key={i} className="paper-panel p-6 border border-[#210100]/10">
+                  <p className="font-mono text-xs uppercase tracking-widest text-[#8C0902] font-bold mb-1">{m.label}</p>
+                  <p className="font-display text-4xl text-[#210100] tracking-tight">{m.value}</p>
+                  <p className="font-serif italic text-xs text-[#210100]/60 mt-1">{m.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Transactions Ledger */}
+            <div className="paper-panel p-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-[#210100]/10 pb-6 mb-6">
+                <div>
+                  <h3 className="font-display text-3xl text-[#210100] uppercase tracking-tighter">Event Treasury Ledger</h3>
+                  <p className="font-serif italic text-lg text-[#210100]/70">Verified receipts and income records for semester fests</p>
+                </div>
+                <Button 
+                  size="sm" 
+                  variant="secondary"
+                  onClick={() => alert('Exporting Club Finance Audit CSV...')}
+                >
+                  Export Statement (CSV)
+                </Button>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left font-mono text-xs">
+                  <thead>
+                    <tr className="border-b border-[#210100]/20 text-[#8C0902] uppercase tracking-widest">
+                      <th className="py-3 px-2">Date</th>
+                      <th className="py-3 px-2">Description</th>
+                      <th className="py-3 px-2">Category</th>
+                      <th className="py-3 px-2 text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#210100]/10">
+                    {transactions.map(t => (
+                      <tr key={t.id} className="hover:bg-[#210100]/5 transition-colors">
+                        <td className="py-3 px-2 text-[#210100]/70">{t.date}</td>
+                        <td className="py-3 px-2 text-[#210100] font-bold font-serif text-base">{t.desc}</td>
+                        <td className="py-3 px-2">
+                          <span className="px-2 py-0.5 rounded-sm bg-[#210100]/10 text-[#210100]">
+                            {t.cat}
+                          </span>
+                        </td>
+                        <td className={`py-3 px-2 text-right font-bold text-base ${t.type === 'in' ? 'text-green-700' : 'text-[#8C0902]'}`}>
+                          {t.type === 'in' ? `+₹${t.amount.toLocaleString()}` : `-₹${t.amount.toLocaleString()}`}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Split Distribution Panel */}
+            <div className="bg-[#210100] border border-[#E6A341]/30 p-8 rounded-xl">
+              <h3 className="font-display text-2xl text-[#E6A341] uppercase tracking-tight mb-2">Core Coordinator Payout Splits</h3>
+              <p className="font-serif italic text-lg text-[#F7F4D5]/70 mb-6">Configured automated equal 3-way split of surplus profits from hackathon ticketing:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  { role: 'Club President', name: 'Demo Club Admin', share: '33.3% (₹14,233)' },
+                  { role: 'Vice President', name: 'Aarav Sharma', share: '33.3% (₹14,233)' },
+                  { role: 'Treasurer & Operations', name: 'Ananya Deshmukh', share: '33.3% (₹14,234)' },
+                ].map((s, idx) => (
+                  <div key={idx} className="bg-white/5 border border-white/10 p-4 rounded-lg">
+                    <p className="font-mono text-xs uppercase text-[#E6A341]">{s.role}</p>
+                    <p className="font-display text-xl text-[#F7F4D5] mt-1">{s.name}</p>
+                    <p className="font-mono text-sm text-green-400 mt-2 font-bold">{s.share}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

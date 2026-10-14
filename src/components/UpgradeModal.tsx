@@ -16,14 +16,14 @@ const TIER_INFO = {
     price: 'Rs 99/mo',
     chip: 'freemium' as const,
     color: '#FFD23F',
-    perks: ['Unlimited categories in Swap', 'Profile preferences in ClubHub', '5 buy requests per month'],
+    perks: ['Priority early-bird event RSVPs', 'Profile club preferences & alerts', 'Volunteer hours tracking'],
   },
   premium: {
     label: 'Premium',
     price: 'Rs 199/mo',
     chip: 'premium' as const,
     color: '#FF5FA2',
-    perks: ['Everything in Freemium', 'Unlimited buy requests', 'Verified seller badge', 'Digital certificates', 'No convenience fee'],
+    perks: ['Everything in Freemium', 'Verified digital certificates with QR', 'Priority volunteer crew lead roles', 'Exclusive workshop & fest passes'],
   },
   'club-pro': {
     label: 'Club Pro',

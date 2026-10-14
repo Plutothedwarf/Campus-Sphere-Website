@@ -3,9 +3,9 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Button } from '../components/Button'
 const PRICING_PREVIEW = [
-  { label: 'Student Free', price: 'Rs 0', chip: 'free' as const, features: ['5 buy requests/month', '1 category in Swap', '3 active listings', 'Calendar + basic volunteer'] },
-  { label: 'Student Freemium', price: 'Rs 99/mo', chip: 'freemium' as const, features: ['5 buy requests/month', 'All categories in Swap', 'Unlimited listings', 'Profile preferences'] },
-  { label: 'Student Premium', price: 'Rs 199/mo', chip: 'premium' as const, features: ['Unlimited requests', 'Verified seller badge', 'Digital certificates', 'No convenience fee'] },
+  { label: 'Student Free', price: 'Rs 0', chip: 'free' as const, features: ['Unlimited event RSVPs', 'Instant QR entry passes', 'Campus calendar sync', 'Basic volunteer sign-ups'] },
+  { label: 'Student Freemium', price: 'Rs 99/mo', chip: 'freemium' as const, features: ['Priority early-bird RSVPs', 'Club preferences & alerts', 'Volunteer hours tracking', 'Personalized schedule'] },
+  { label: 'Student Premium', price: 'Rs 199/mo', chip: 'premium' as const, features: ['Verified digital certificates', 'Exclusive workshop passes', 'Lead volunteer opportunities', 'Accredited skill credentials'] },
 ]
 
 export default function LandingPage() {
@@ -85,7 +85,7 @@ export default function LandingPage() {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="font-serif italic text-base sm:text-2xl text-[#F7F4D5]/50 mt-20 sm:mt-32 tracking-wide"
           >
-            Everything on campus, in one place.
+            Every event, club, and volunteer opportunity in one place.
           </motion.p>
         </motion.div>
 
@@ -145,8 +145,8 @@ export default function LandingPage() {
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           style={{ width: 'max-content' }}
         >
-          {['Campus Swap', 'ClubHub', 'Events', 'Volunteer', 'Marketplace', 'Connect', 'RSVP', 'Certificates',
-            'Campus Swap', 'ClubHub', 'Events', 'Volunteer', 'Marketplace', 'Connect', 'RSVP', 'Certificates'].map((item, i) => (
+          {['ClubHub', 'Events', 'Volunteer Crew', 'Workshops', 'Competitions', 'RSVP Passes', 'Certificates', 'Festivals',
+            'ClubHub', 'Events', 'Volunteer Crew', 'Workshops', 'Competitions', 'RSVP Passes', 'Certificates', 'Festivals'].map((item, i) => (
             <span key={i} className="font-display uppercase text-lg tracking-widest text-[#F7F4D5]/25 flex-shrink-0">
               {item} <span className="text-[#E6A341]/40 mx-2">*</span>
             </span>
@@ -154,8 +154,8 @@ export default function LandingPage() {
         </motion.div>
       </div>
 
-      {/* SWAP SECTION */}
-      <section className="bg-[#0A3323] py-24 sm:py-32 px-4 sm:px-8 relative overflow-hidden">
+      {/* EVENTS SHOWCASE SECTION */}
+      <section className="bg-[#1A0503] py-24 sm:py-32 px-4 sm:px-8 relative overflow-hidden border-b border-[#E6A341]/20">
         <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/stucco.png')] pointer-events-none" />
         <div className="absolute top-8 right-8 font-display text-[10rem] leading-none text-[#F7F4D5]/[0.03] pointer-events-none select-none hidden lg:block">01</div>
 
@@ -167,84 +167,84 @@ export default function LandingPage() {
           className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 items-center"
         >
           <div className="space-y-5 z-10 order-2 md:order-1">
-            <div className="font-mono text-[11px] uppercase tracking-widest text-[#839958]/60">Module 01</div>
-            <h2 className="font-display text-5xl sm:text-6xl uppercase tracking-tighter text-[#839958] leading-none">Campus<br/>Swap</h2>
-            <p className="font-serif text-xl sm:text-2xl italic text-[#D3968C] leading-tight max-w-sm">
-              Buy, sell and rent stuff with people who actually live 5 minutes away.
+            <div className="font-mono text-[11px] uppercase tracking-widest text-[#E6A341]/80">Module 01</div>
+            <h2 className="font-display text-5xl sm:text-6xl uppercase tracking-tighter text-[#E6A341] leading-none">Campus<br/>Events</h2>
+            <p className="font-serif text-xl sm:text-2xl italic text-[#F7F4D5]/90 leading-tight max-w-sm">
+              Never miss a fest, workshop, or competition again.
             </p>
             <p className="font-body text-base text-[#F7F4D5]/70 max-w-sm">
-              Textbooks, calculators, lab coats, bicycles. Keep it on campus.
+              Real-time club schedules, live attendance counters, and instant digital QR entry passes right from your phone.
             </p>
             <motion.button
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
               onClick={() => navigate('/login?role=student')}
-              className="font-display uppercase tracking-widest text-sm bg-[#839958] text-[#0A3323] px-8 py-3 mt-2 inline-block cursor-pointer"
+              className="font-display uppercase tracking-widest text-sm bg-[#E6A341] text-[#210100] px-8 py-3 mt-2 inline-block cursor-pointer font-bold shadow-lg"
             >
-              Browse Swap
+              Browse Events
             </motion.button>
           </div>
 
           <div className="relative h-80 sm:h-[500px] order-1 md:order-2 w-full">
-            {/* Hand-drawn scribble accent */}
-            <motion.svg className="absolute -top-10 right-10 w-24 h-24 text-[#E6A341]/40 hidden sm:block pointer-events-none" viewBox="0 0 100 100" initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.5, delay: 0.5 }}>
-              <path d="M10,50 Q30,20 50,50 T90,50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <path d="M70,30 L90,50 L70,70" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </motion.svg>
-
             {/* Note tag */}
             <motion.div 
               initial={{ opacity: 0, rotate: 15 }} whileInView={{ opacity: 1, rotate: -5 }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute top-0 right-[10%] sm:right-1/4 bg-[#D3968C] px-3 py-1 font-mono text-[10px] text-[#210100] uppercase tracking-widest shadow-lg z-30 transform-origin-top-right rotate-12"
+              className="absolute top-0 right-[10%] sm:right-1/4 bg-[#E6A341] px-3 py-1 font-mono text-[10px] text-[#210100] uppercase tracking-widest shadow-lg z-30 transform-origin-top-right rotate-12 font-bold"
             >
-              $15 only
+              Free Student Entry
             </motion.div>
 
+            {/* Poster 1 - Youth Parliament */}
             <motion.div
               initial={{ opacity: 0, rotate: -12, x: -30, y: 30 }}
-              whileInView={{ opacity: 1, rotate: -8, x: 0, y: 0 }}
+              whileInView={{ opacity: 1, rotate: -6, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.05, rotate: -3, zIndex: 30 }}
-              className="absolute top-10 left-4 sm:top-12 sm:left-4 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl group"
+              whileHover={{ scale: 1.05, rotate: -2, zIndex: 30 }}
+              className="absolute top-10 left-4 sm:top-12 sm:left-4 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-10 shadow-2xl group border border-[#210100]/20"
               style={{ width: 'clamp(140px, 35vw, 220px)' }}
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-white/40 backdrop-blur-sm rotate-2 mix-blend-overlay shadow-sm" />
-              <div className="aspect-square bg-[#0A3323] overflow-hidden mb-2 sm:mb-4">
-                <img src="/images/swap/mathematics books.jpeg" alt="Math Book" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
+              <div className="aspect-[3/4] bg-[#210100] overflow-hidden mb-2 sm:mb-3">
+                <img src="/images/events/youth parliament poster.jpeg" alt="Youth Parliament" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" />
               </div>
-              <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Math 101 Book</div>
+              <div className="font-display uppercase tracking-tight text-[#210100] text-sm sm:text-base text-center font-bold">Youth Parliament</div>
+              <div className="font-mono text-[10px] text-[#8C0902] text-center mt-0.5">Auditorium · 150 Seats</div>
             </motion.div>
 
+            {/* Poster 2 - Debate */}
             <motion.div
               initial={{ opacity: 0, rotate: 12, x: 30, y: 40 }}
-              whileInView={{ opacity: 1, rotate: 14, x: 0, y: 0 }}
+              whileInView={{ opacity: 1, rotate: 10, x: 0, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              whileHover={{ scale: 1.05, rotate: 6, zIndex: 30 }}
-              className="absolute top-24 right-4 sm:top-20 sm:right-8 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl group"
+              whileHover={{ scale: 1.05, rotate: 4, zIndex: 30 }}
+              className="absolute top-24 right-4 sm:top-20 sm:right-8 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-10 shadow-2xl group border border-[#210100]/20"
               style={{ width: 'clamp(140px, 35vw, 220px)' }}
             >
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-8 bg-white/40 backdrop-blur-sm -rotate-4 mix-blend-overlay shadow-sm" />
-              <div className="aspect-square bg-[#E6A341]/20 overflow-hidden mb-2 sm:mb-4">
-                <img src="/images/swap/labcoat.jpeg" alt="Lab Coat" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
+              <div className="aspect-[3/4] bg-[#210100] overflow-hidden mb-2 sm:mb-3">
+                <img src="/images/events/debating event poster.jpeg" alt="Debate Society" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" />
               </div>
-              <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Lab Coat (M)</div>
+              <div className="font-display uppercase tracking-tight text-[#210100] text-sm sm:text-base text-center font-bold">Inter-College Debate</div>
+              <div className="font-mono text-[10px] text-[#8C0902] text-center mt-0.5">₹10,000 Prize Pool</div>
             </motion.div>
 
+            {/* Poster 3 - Robo Wars */}
             <motion.div
               initial={{ opacity: 0, rotate: -2, y: 60 }}
               whileInView={{ opacity: 1, rotate: 2, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              whileHover={{ scale: 1.05, rotate: -2, zIndex: 30 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:bottom-12 sm:left-[45%] sm:-translate-x-1/2 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-12 shadow-2xl group"
+              whileHover={{ scale: 1.05, rotate: -1, zIndex: 30 }}
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:bottom-8 sm:left-[45%] sm:-translate-x-1/2 bg-[#F7F4D5] p-3 sm:p-4 pb-8 sm:pb-10 shadow-2xl group border border-[#210100]/20"
               style={{ width: 'clamp(140px, 35vw, 220px)' }}
             >
               <div className="absolute -top-3 left-[20%] w-20 h-5 bg-white/50 backdrop-blur-md rotate-1 mix-blend-overlay shadow-sm" />
-              <div className="aspect-square bg-[#D3968C]/30 overflow-hidden mb-2 sm:mb-4">
-                <img src="/images/swap/calculator.jpeg" alt="Calculator" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal" />
+              <div className="aspect-[3/4] bg-[#210100] overflow-hidden mb-2 sm:mb-3">
+                <img src="/images/events/poster 1.jpeg" alt="Robo Wars" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100" />
               </div>
-              <div className="font-handwriting text-[#210100] text-lg sm:text-2xl text-center">Casio Calc</div>
+              <div className="font-display uppercase tracking-tight text-[#210100] text-sm sm:text-base text-center font-bold">Robo Wars 2026</div>
+              <div className="font-mono text-[10px] text-[#8C0902] text-center mt-0.5">500 Passes · Sports Arena</div>
             </motion.div>
           </div>
         </motion.div>
@@ -323,19 +323,19 @@ export default function LandingPage() {
 
           <div className="order-1 md:order-2 space-y-5 z-10">
             <div className="font-mono text-[11px] uppercase tracking-widest text-[#E6A341]/60">Module 02</div>
-            <h2 className="font-display text-5xl sm:text-6xl uppercase tracking-tighter text-[#E6A341] leading-none">Club<br/>Hub</h2>
-            <p className="font-serif text-xl sm:text-2xl italic text-[#B14A36] leading-tight max-w-sm">
-              Every event, every club, every volunteer slot in one place.
+            <h2 className="font-display text-5xl sm:text-6xl uppercase tracking-tighter text-[#E6A341] leading-none">Volunteer<br/>& Certs</h2>
+            <p className="font-serif text-xl sm:text-2xl italic text-[#E6A341]/90 leading-tight max-w-sm">
+              Gain real leadership experience. Earn verified certificates on the way out.
             </p>
             <p className="font-body text-base text-[#F7F4D5]/70 max-w-sm">
-              RSVP in two taps. Get your digital certificate on the way out.
+              Backstage logistics, technical crew, and stage management for major college fests with official digital credentialing.
             </p>
             <motion.button
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
               onClick={() => navigate('/login?role=student')}
-              className="font-display uppercase tracking-widest text-sm bg-[#E6A341] text-[#210100] px-8 py-3 mt-2 inline-block cursor-pointer"
+              className="font-display uppercase tracking-widest text-sm bg-[#E6A341] text-[#210100] px-8 py-3 mt-2 inline-block cursor-pointer font-bold shadow-lg"
             >
-              Explore Events
+              Join Volunteer Crew
             </motion.button>
           </div>
         </motion.div>

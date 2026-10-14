@@ -7,7 +7,6 @@ import type { StudentTier } from '../store/useAppStore'
 // Nav items per role
 const STUDENT_NAV = [
   { path: '/app/home', label: 'Home' },
-  { path: '/app/swap', label: 'Swap' },
   { path: '/app/clubhub', label: 'ClubHub' },
   { path: '/app/profile', label: 'Profile' },
 ]
@@ -60,10 +59,8 @@ export default function AppShell() {
 
   if (!isLoggedIn || !user) return null
 
-  // Determine if current module is Lotus (Swap) or Carnival (ClubHub/Home)
-  const isLotus = location.pathname.includes('/swap')
-  const bgClass = isLotus ? 'bg-lotus' : 'bg-carnival'
-  const textClass = isLotus ? 'text-[#839958]' : 'text-[#E6A341]'
+  const bgClass = 'bg-carnival'
+  const textClass = 'text-[#E6A341]'
   
   // Header uses charcoal-panel for textured aesthetic
   const headerBg = 'charcoal-panel'
@@ -84,12 +81,12 @@ export default function AppShell() {
         <div className="hidden md:flex items-center gap-2 text-[#F7F4D5]/30">
           <span className="text-[#F7F4D5]/20">·</span>
           <span className="font-mono text-[11px] uppercase tracking-widest text-[#F7F4D5]/40">
-            {location.pathname.includes('/swap') ? 'Campus Swap' :
-             location.pathname.includes('/clubhub') ? 'ClubHub' :
+            {location.pathname.includes('/clubhub') ? 'ClubHub' :
              location.pathname.includes('/events') ? 'Events' :
              location.pathname.includes('/volunteers') ? 'Volunteers' :
              location.pathname.includes('/finance') ? 'Finance' :
-             location.pathname.includes('/dashboard') ? 'Dashboard' : 'Home'}
+             location.pathname.includes('/dashboard') ? 'Dashboard' :
+             location.pathname.includes('/profile') ? 'Profile' : 'Home'}
           </span>
         </div>
 

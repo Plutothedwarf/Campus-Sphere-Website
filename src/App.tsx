@@ -4,7 +4,6 @@ import LoginPage from './pages/LoginPage'
 import PricingPage from './pages/PricingPage'
 import AppShell from './layouts/AppShell'
 import HomePage from './pages/app/HomePage'
-import SwapPage from './pages/app/SwapPage'
 import ClubHubPage from './pages/app/ClubHubPage'
 import ProfilePage from './pages/app/ProfilePage'
 import { DashboardPage, EventsPage, VolunteersPage, FinancePage } from './pages/app/ClubPages'
@@ -37,7 +36,7 @@ export default function App() {
         >
           {/* Student routes */}
           <Route path="home" element={<HomePage />} />
-          <Route path="swap" element={<SwapPage />} />
+          <Route path="swap" element={<Navigate to="/app/clubhub" replace />} />
           <Route path="clubhub" element={<ClubHubPage />} />
           <Route path="profile" element={<ProfilePage />} />
 
